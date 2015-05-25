@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SetParametrosTemp
-    Created on : 24/05/2015, 04:12:11 PM
+    Document   : Monitor
+    Created on : 24/05/2015, 09:57:53 PM
     Author     : naldoc
 --%>
 
@@ -43,34 +43,27 @@
       <div id="content">
         <!-- insert the page content here -->
         <%
-            int Dispositivo = Integer.parseInt(request.getParameter("dispositivo"));
-            float Minimo = Float.parseFloat(request.getParameter("minimo"));
-            float Maximo = Float.parseFloat(request.getParameter("maximo"));
+            //int Dispositivo = Integer.parseInt(request.getParameter("dispositivo"));
+            //float Minimo = Float.parseFloat(request.getParameter("minimo"));
+            //float Maximo = Float.parseFloat(request.getParameter("maximo"));
             java.util.Date currentTime = new java.util.Date();
             Timestamp tStamp = new Timestamp(currentTime.getTime());
             out.write("<h1>" + tStamp + "</h1>");
+            
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonar","aec2","12345");
                 Statement stm=con.createStatement();
-                ResultSet resultado = stm.executeQuery("SELECT * FROM sonar.dispositivo");
+                ResultSet resultado = stm.executeQuery("SELECT * FROM sonar.registro");
                 boolean existe_dispositivo = false;
                 while(resultado.next()){
-                    int id_dispositvo = Integer.parseInt(resultado.getString("id_dispositivo"));
-                    if ( Dispositivo == id_dispositvo ){
-                        existe_dispositivo = true;
-                        break;
-                    }
+                    
                 }
-                if(!existe_dispositivo){
-                    out.write("<h1> El dispositovo no existe </h1>");
-                }
-                else{
                     //aqui hacemos algo si el dispositivo existe
                     //out.write("El dispositovo existe");
-                    int res = stm.executeUpdate("UPDATE dispositivo SET minimo=" + Minimo + ", maximo=" + Maximo + "WHERE id_dispositivo=" + Dispositivo);
-                    out.write("<h1> SE CAMBIARON LOS NIVELES PARA EL DISPOSITIVO " + Dispositivo);
-                }
+                    //int res = stm.executeUpdate("UPDATE dispositivo SET minimo=" + Minimo + ", maximo=" + Maximo + "WHERE id_dispositivo=" + Dispositivo);
+                    //out.write("<h1> SE CAMBIARON LOS NIVELES PARA EL DISPOSITIVO " + Dispositivo);
+                
             } catch(Exception e) {
                 out.write(e.toString());
             }
