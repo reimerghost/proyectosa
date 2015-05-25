@@ -48,12 +48,13 @@
             float Maximo = Float.parseFloat(request.getParameter("maximo"));
             java.util.Date currentTime = new java.util.Date();
             Timestamp tStamp = new Timestamp(currentTime.getTime());
-            out.write("<h1>" + tStamp + "</h1>");
+            //out.write("<h1>" + tStamp + "</h1>");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonar","aec2","12345");
+                //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonar","aec2","12345");
+                Connection con = DriverManager.getConnection("jdbc:mysql://MYSQL5005.Smarterasp.net/db_9c7c0e_sonar","9c7c0e_sonar","abcde12345");
                 Statement stm=con.createStatement();
-                ResultSet resultado = stm.executeQuery("SELECT * FROM sonar.dispositivo");
+                ResultSet resultado = stm.executeQuery("SELECT * FROM dispositivo");
                 boolean existe_dispositivo = false;
                 while(resultado.next()){
                     int id_dispositvo = Integer.parseInt(resultado.getString("id_dispositivo"));
