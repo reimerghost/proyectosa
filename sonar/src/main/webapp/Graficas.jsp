@@ -16,7 +16,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-   <script type="text/javascript">
+  <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -33,7 +33,7 @@
                      float NivelCapturado = Float.parseFloat(resultado.getString("nivel_capturado"));
                      String Hora = resultado.getString("timestamp");
                      Timestamp ts = Timestamp.valueOf(Hora);
-                     out.write("[" + ts.getSeconds() + ",   " + NivelCapturado +  "   , '" + ts.toString() + "'" + "],");
+                     out.write("[" + ts.getSeconds() + ",   " + NivelCapturado +  "   , '" + ts.toString() + " , " + "dB: " + NivelCapturado  + "'" + "],");
                 }
             } catch(Exception e) {
                 out.write(e.toString());
