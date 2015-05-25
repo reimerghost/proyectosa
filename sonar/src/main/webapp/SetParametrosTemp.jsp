@@ -51,6 +51,7 @@
             //out.write("<h1>" + tStamp + "</h1>");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://MYSQL5005.Smarterasp.net:3306/db_9c7c0e_sonar","9c7c0e_sonar","abcde12345");
                 //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonar","aec2","12345");
                 Connection con = DriverManager.getConnection("jdbc:mysql://MYSQL5005.Smarterasp.net/db_9c7c0e_sonar","9c7c0e_sonar","abcde12345");
                 Statement stm=con.createStatement();
