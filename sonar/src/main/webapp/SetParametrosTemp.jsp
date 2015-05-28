@@ -23,18 +23,26 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">Sonar<span class="logo_colour">, S.A.</span></a></h1>
-          <h2>Sound Monitor</h2>
+          <table  style="width: 100%">
+              <tr>
+                  <td >
+                      <h1><font color="red"> <a href="index.html">Sonar<span class="logo_colour">, S.A.</span></a></font></h1>
+                    <h2>Sound Monitor</h2>
+                  </td>
+                  <td>
+                    <img src="style/Logo_Sonar.png" alt="Logo_Sonar" style="width:100px;height:50px">
+                  </td>
+              </tr>  
+          </table>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="examples.html">Examples</a></li>
-          <li><a href="page.html">A Page</a></li>
-          <li><a href="another_page.html">Another Page</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li class="selected"><a href="index.html">Parametros</a></li>
+          <li><a href="Monitor.jsp">Monitor</a></li>
+          <li><a href="Graficas.jsp">Graficas</a></li>
+          <li><a href="Contactenos.jsp">Contactenos</a></li>
         </ul>
       </div>
     </div>
@@ -46,10 +54,14 @@
             int Dispositivo = Integer.parseInt(request.getParameter("dispositivo"));
             float Minimo = Float.parseFloat(request.getParameter("minimo"));
             float Maximo = Float.parseFloat(request.getParameter("maximo"));
-            
+            java.util.Date currentTime = new java.util.Date();
+            Timestamp tStamp = new Timestamp(currentTime.getTime());
+            //out.write("<h1>" + tStamp + "</h1>");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://MYSQL5005.Smarterasp.net:3306/db_9c7c0e_sonar","9c7c0e_sonar","abcde12345");
+                //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonar","aec2","12345");
+                //Connection con = DriverManager.getConnection("jdbc:mysql://MYSQL5005.Smarterasp.net/db_9c7c0e_sonar","9c7c0e_sonar","abcde12345");
                 Statement stm=con.createStatement();
                 ResultSet resultado = stm.executeQuery("SELECT * FROM dispositivo");
                 boolean existe_dispositivo = false;
@@ -78,7 +90,7 @@
         </div>
     </div>
     <div id="footer">
-      Copyright &copy; black_white | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Free CSS Templates</a>
+      Copyright &copy; Sonar, S.A. 
     </div>
   </div>
 </body>
