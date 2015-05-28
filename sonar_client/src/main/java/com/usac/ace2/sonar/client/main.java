@@ -17,27 +17,11 @@ public class main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        int dp = 0;
-        for (int i = 0; i < args.length; i++) {
-            System.out.println(i+" "+args[i]);
-            dp = Integer.parseInt(args[0]);
-        }
-        System.out.println("---");
-        Thread myrunnable;
-            myrunnable = new Thread(new Detector(dp), "T1"); //Thread created
-        try {
-            myrunnable.start();
-            while (!Thread.interrupted()) {
-                if (Thread.interrupted()) {
-                    return;//to quit from the middle of the loop
-                }
-            }
-        } finally {
-            // close your ports in finally-block
-            // so they get closed even on exceptions
-        }
+    private static Menu m = new Menu();
 
+    public static void main(String[] args) {
+        m.mostrarMenuInicial();                
+//        }
     }
 
 }

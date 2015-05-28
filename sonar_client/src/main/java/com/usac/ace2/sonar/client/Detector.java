@@ -28,9 +28,9 @@ public class Detector implements Runnable {
             while (true) {
                 //System.out.println(tiempoCorriendo);
                 reg++;
-                
-                bdd.grabarRegistro(reg,1f);
-                 
+                float gf = 10*(float)Math.random()+10*(float)Math.random();
+                bdd.grabarRegistro(reg,gf);
+                bdd.Migrar();
                 bdd.test();
                 Thread.sleep(5000L);                
             }
