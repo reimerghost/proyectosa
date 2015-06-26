@@ -8,9 +8,11 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
  
-@WebService 
-@SOAPBinding(style=SOAPBinding.Style.RPC)
+@WebService
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 public class HelloWebService {
+ 
+ 
     @WebMethod(operationName = "sayHello")
     public String sayHello(@WebParam(name="guestname") String guestname){
  
