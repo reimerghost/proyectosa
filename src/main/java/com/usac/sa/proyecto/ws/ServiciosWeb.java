@@ -1,7 +1,7 @@
 /**
  * @autor reimer
  */
-package com.usac.sa.proyecto;
+package com.usac.sa.proyecto.ws;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -10,7 +10,7 @@ import javax.jws.soap.SOAPBinding;
  
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public class HelloWebService {
+public class ServiciosWeb {
  
  
     @WebMethod(operationName = "sayHello")
