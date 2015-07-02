@@ -11,17 +11,19 @@ import javax.jws.soap.SOAPBinding;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public class ServiciosWeb {
+public class SGOB {
 
-    @WebMethod(operationName = "sayHello")
-    public String sayHello(@WebParam(name = "guestname") String guestname) {
+    @WebMethod(operationName = "iniciarSesion")
+    public String iniciarSesion(@WebParam(name = "tipo") String tipo,
+            @WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
 
-        if (guestname == null) {
-            return "Hello";
+        if (user == pass) {
+            return "SI";
         }
-        return "Hello " + guestname;
+        return "NO";
 
     }
+
 
     /**
      * Web service operation
@@ -167,5 +169,16 @@ public class ServiciosWeb {
         testTest tt = new testTest();
 
         return tt;
+    }
+    
+    //TESTING ZONE
+    @WebMethod(operationName = "sayHello")
+    public String sayHello(@WebParam(name = "guestname") String guestname) {
+
+        if (guestname == null) {
+            return "Hello";
+        }
+        return "Hello " + guestname;
+
     }
 }
