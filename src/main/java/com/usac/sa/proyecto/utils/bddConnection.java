@@ -14,7 +14,8 @@ import java.sql.*;
 public class bddConnection {
 
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    //private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_CONNECTION = "jdbc:oracle:thin:@192.168.0.13:1521:xe";
     private static final String DB_USER = "admin";
     private static final String DB_PASSWORD = "1234";
 

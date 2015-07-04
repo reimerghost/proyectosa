@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.usac.sa.proyecto.test;
+package com.usac.sa.proyecto;
 
 import com.usac.sa.proyecto.utils.bddConnection;
 import java.sql.Connection;
@@ -32,20 +32,21 @@ public class Cliente {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String updateTableSQL = "select * from emp";
+        String updateTableSQL = "select nombre from cliente where usuario='"
+                + usuario + "' and password='"
+                + password + "'";
 
         try {
             dbConnection = bddConnection.getDBConnection();
             statement = dbConnection.createStatement();
             //preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-
             ResultSet rs = statement.executeQuery(updateTableSQL);
 
             while (rs.next()) {
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                System.out.println(rs.getString(1));
                 resp = true;
             }
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {

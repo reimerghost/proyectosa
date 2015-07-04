@@ -3,7 +3,7 @@
  */
 package com.usac.sa.proyecto.ws;
 
-import com.usac.sa.proyecto.test.Cliente;
+import com.usac.sa.proyecto.Cliente;
 import com.usac.sa.proyecto.test.testTest;
 import java.sql.SQLException;
 import java.util.logging.Level;
