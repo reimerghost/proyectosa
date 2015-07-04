@@ -3,7 +3,11 @@
  */
 package com.usac.sa.proyecto.ws;
 
+import com.usac.sa.proyecto.test.Cliente;
 import com.usac.sa.proyecto.test.testTest;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -13,25 +17,14 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class SGOB {
 
-    @WebMethod(operationName = "iniciarSesion")
-    public String iniciarSesion(@WebParam(name = "tipo") String tipo,
-            @WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
-
-        if (user == pass) {
-            return "SI";
-        }
-        return "NO";
-
-    }
-
-
     /**
      * Web service operation
      */
     @WebMethod(operationName = "iniciarSesion")
-    public String IniciarSesion() {
+    public boolean IniciarSesion(@WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
         //TODO write your implementation code here:
-        return null;
+        Cliente c = new Cliente(user, pass);
+        return c.Login();
     }
 
     /**
@@ -170,7 +163,7 @@ public class SGOB {
 
         return tt;
     }
-    
+
     //TESTING ZONE
     @WebMethod(operationName = "sayHello")
     public String sayHello(@WebParam(name = "guestname") String guestname) {
