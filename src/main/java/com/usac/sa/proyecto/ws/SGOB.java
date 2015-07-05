@@ -4,6 +4,7 @@
 package com.usac.sa.proyecto.ws;
 
 import com.usac.sa.proyecto.Cliente;
+import com.usac.sa.proyecto.Cuenta;
 import com.usac.sa.proyecto.test.testTest;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,41 +18,64 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class SGOB {
 
+    //Servicios Relacionados con el Cliente//
     /**
      * Web service operation
+     *
+     * @param user Nombre de Usuario del Banco.
+     * @param pass Contraseña de usuario
+     * @return retorna valor booleando que permite loguear o no.
      */
     @WebMethod(operationName = "iniciarSesion")
     public boolean IniciarSesion(@WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
-        //TODO write your implementation code here:
         Cliente c = new Cliente(user, pass);
         return c.Login();
     }
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "abrirCuenta")
-    public String AbrirCuenta() {
-        //TODO write your implementation code here:
-        return null;
+    @WebMethod(operationName = "obtenerCliente")
+    public Cliente obtenerCliente(@WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
+        Cliente c = new Cliente();
+        c.buscarCliente(user, pass);
+        return c;
     }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "crearCliente")
-    public String CrearCliente() {
-        //TODO write your implementation code here:
-        return null;
+    public boolean CrearCliente(@WebParam(name = "nombre") String name, @WebParam(name = "apellido") String lastname,
+            @WebParam(name = "direccion") String dir, @WebParam(name = "telefono") String tel,
+            @WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
+        Cliente c = new Cliente();
+        return c.RegistrarCliente(name, lastname, dir, tel, user, pass);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "abrirCuenta")
+    public boolean AbrirCuenta(@WebParam(name = "idCliente") int idCliente) {
+        Cuenta c = new Cuenta();
+        return c.nuevaCuenta(idCliente, 0);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "AbrirCuentaMonto")
+    public boolean AbrirCuentaMonto(@WebParam(name = "idCliente") int idCliente, @WebParam(name = "monto") float monto) {
+        Cuenta c = new Cuenta();
+        return c.nuevaCuenta(idCliente, monto);
     }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "agregarSaldo")
-    public String AgregarSaldo() {
-        //TODO write your implementation code here:
-        return null;
+    public boolean AgregarSaldo(@WebParam(name = "idCuenta") int idCuenta, @WebParam(name = "monto") float monto) {
+        Cuenta c = new Cuenta();
+        boolean r = c.AgregarMonto(idCuenta, monto);
+        return r;
     }
 
     /**

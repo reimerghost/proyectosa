@@ -5,6 +5,7 @@
  */
 package com.usac.sa.proyecto;
 
+import com.usac.sa.proyecto.utils.bddConnection;
 import java.sql.SQLException;
 
 /**
@@ -14,12 +15,7 @@ import java.sql.SQLException;
 public class run {
 
     public static void main(String[] argv) {
-
-        Cliente c = new Cliente("Rei", "1234");
-        System.out.println(c.Login());
-        
-        Cliente c2 = new Cliente("reimer", "1234");
-        System.out.println(c2.Login());
-
+        Cuenta c = new Cuenta();
+        System.out.println(c.AgregarMonto(3, 555));
     }
 }
