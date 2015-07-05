@@ -32,11 +32,17 @@ public class SGOB {
         return c.Login();
     }
 
-    @WebMethod(operationName = "obtenerCliente")
-    public Cliente obtenerCliente(@WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
+    @WebMethod(operationName = "mostrarDatosCliente")
+    public Cliente mostrarDatosCliente(@WebParam(name = "usuario") String user, @WebParam(name = "password") String pass) {
         Cliente c = new Cliente();
         c.buscarCliente(user, pass);
         return c;
+    }
+    
+    @WebMethod(operationName = "existeCliente")
+    public boolean existeCliente(@WebParam(name = "usuario") String user) {
+        Cliente c = new Cliente();
+        return c.buscarClienteAdmin(user);
     }
 
     /**
@@ -82,16 +88,19 @@ public class SGOB {
      * Web service operation
      */
     @WebMethod(operationName = "mostrarSaldo")
-    public String MostrarSaldo() {
-        //TODO write your implementation code here:
-        return null;
+    public float MostrarSaldo(@WebParam(name = "idCuenta") int idCuenta) {
+        Cuenta c = new Cuenta();
+        c.getCuenta(idCuenta);
+
+        return c.getSaldo();
     }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "realizarTransferencia")
-    public String realizarTransferencia() {
+    public String realizarTransferencia(@WebParam(name = "idCuentaO") int idCuentaO, @WebParam(name = "idCuentaD") int idCuentaD,
+            @WebParam(name = "monto") float monto) {
         //TODO write your implementation code here:
         return null;
     }
@@ -101,15 +110,6 @@ public class SGOB {
      */
     @WebMethod(operationName = "consultarHistorial")
     public String consultarHistorial() {
-        //TODO write your implementation code here:
-        return null;
-    }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "mostrarDatosCliente")
-    public String mostrarDatosCliente() {
         //TODO write your implementation code here:
         return null;
     }

@@ -91,7 +91,7 @@ public class Cliente {
         return (getId() > 0);
     }
 
-    public void buscarCliente(String u, String p) {
+    public final void buscarCliente(String u, String p) {
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
@@ -134,6 +134,46 @@ public class Cliente {
                 }
             }
         }
+    }
+
+    public final boolean buscarClienteAdmin(String u) {
+        Connection dbConnection = null;
+        PreparedStatement preparedStatement = null;
+        boolean r = false;
+
+        String selectLogin = "select * from cliente where usuario= ?";
+
+        try {
+            dbConnection = bddConnection.getDBConnection();
+            preparedStatement = dbConnection.prepareStatement(selectLogin);
+            //preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+
+            preparedStatement.setString(1, u);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                r = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (dbConnection != null) {
+                try {
+                    dbConnection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return r;
     }
 
     /**
